@@ -1,0 +1,18 @@
+h1{
+    text-align: center;
+}
+
+#home-container{
+    display: flex;
+
+    #feed-post{
+        width: 80%;
+        padding: 10px;
+    }
+    #user-friends{
+        width: 20%;
+        padding: 10px;
+        border-left: 1px solid;
+        height: 100%;
+    }
+}
