@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
 
     password: {
         type: String,
-        required: true
+        required: true,
+        // select : false
     },
     name:{
         type: String,
@@ -28,7 +29,9 @@ const UserSchema = new mongoose.Schema({
 },
 {
     timestamps: true
-});
+},
+
+);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

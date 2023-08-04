@@ -31,15 +31,15 @@ module.exports.update = async function(req,res){
     if(req.user.id == req.params.id){
          try{
         let user = await User.findById(req.params.id);
-        User.uploadedAvatar(req , res ,function(err){
+        await User.uploadedAvatar(req , res ,function(err){
             if(err){
                 console.log('*****MulterError', err)
             }
             user.name = req.body.name;
             user.email = req.body.email;
-
+            // console.log(req.file,req);
             if(req.file){
-
+                
                 if (user.avatar){
                     fs.unlinkSync(path.join(__dirname, '..', user.avatar));
                 }
