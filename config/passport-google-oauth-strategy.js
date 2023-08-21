@@ -12,25 +12,24 @@ passport.use(new googleStrategy({
    async function(accessToken , refreshToken,profile,done){
     //find user
          const user = await User.findOne({email : profile.emails[0].value}).exec()
-            if(err){
-                console.log('error in google stategy pasport ', err);
-            }
+            // if(err){
+            //     console.log('error in google stategy pasport ', err);
+            // }
             if(user){
                 // if found,  set this user as req.user
                 return done(null, user);
             }
             else{
                 // if not found create the user and set it as req.user
-                User.create({
+                const google = User.create({
                     name : profile.displayName,
                     email : profile.emails[0].value,
                     password : crypto.randomBytes(20).toString('hex')
-                } , function(err,user){
-                    if(err){
-                        console.log('error in google stategy pasport ', err);
-                    }
-                    return done(null,user);
                 })
+                    // if(err){
+                    //     console.log('error in google stategy pasport ', err);
+                    // }
+                    return done(null,user);
             }
     }
 ))
